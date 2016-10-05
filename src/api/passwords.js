@@ -9,9 +9,10 @@ export default ({ config, db }) => resource({
    *  Errors terminate the request, success sets `req[id] = data`.
    */
    load(req, id, callback) {
-    let password = db.models.password.find( password => password.id===id ),
-    err = password ? null : 'Not found';
-    callback(err, password);
+    db.models.password.find( { where: {text: id} } ).then(password => {
+      let err = password ? null : 'Not found';
+      callback(err, password);      
+    })
   },
 
   /** GET / - List all entities */
@@ -31,7 +32,8 @@ export default ({ config, db }) => resource({
 
   /** GET /:id - Return a given entity */
   read({ password }, res) {
-    res.json(password);
+    console.log(password);
+    res.json(password)
   },
 
   /** PUT /:id - Update a given entity */

@@ -6,7 +6,7 @@ export default ({ config, db }) => {
 	let api = Router();
 
 	// mount the passwords resource
-	api.use('/passwords', passwords({ config, db }));
+	api.use('/v1/passwords', passwords({ config, db }));
 
 	// perhaps expose some API metadata at the root
 	api.get('/', (req, res) => {
