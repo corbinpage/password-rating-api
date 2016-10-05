@@ -1,5 +1,5 @@
 import db from '../db/db';
-var Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
 var Password = db.define('password', {
   id: {
@@ -10,6 +10,9 @@ var Password = db.define('password', {
   text: {
     type: Sequelize.STRING
   },
+  rank: {
+    type: Sequelize.INTEGER
+  },
   strength: {
     type: Sequelize.STRING
   },
@@ -19,5 +22,7 @@ var Password = db.define('password', {
 }, {
   freezeTableName: true // Model tableName will be the same as the model name
 });
+
+Password.sync();
 
 export default Password;

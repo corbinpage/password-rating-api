@@ -1,7 +1,7 @@
 export default callback => {
   var Sequelize = require('sequelize');
 
-  var sequelize = new Sequelize('database', 'username', 'password', {
+  var db = new Sequelize('database', 'username', 'password', {
     host: 'localhost',
     dialect: 'sqlite', // 'postgres'
 
@@ -12,8 +12,33 @@ export default callback => {
     },
 
     // SQLite only
-    storage: 'db/dev.sqlite'
+    storage: 'src/db/dev.sqlite'
   });
 
-callback(sequelize);
+  var Password = db.define('password', {
+    id: {
+      type: Sequelize.INTEGER,
+      primaryKey: true,
+      autoIncrement: true
+    },
+    text: {
+      type: Sequelize.STRING
+    },
+    rank: {
+      type: Sequelize.INTEGER
+    },
+    strength: {
+      type: Sequelize.STRING
+    },
+    score: {
+      type: Sequelize.INTEGER
+    }
+  }, {
+    freezeTableName: true
+  });
+
+  Password.sync();
+
+
+  callback(db);
 }

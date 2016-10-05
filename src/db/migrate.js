@@ -33,11 +33,4 @@ var Password = db.define('password', {
   freezeTableName: true // Model tableName will be the same as the model name
 });
 
-Password.sync({force: true}).then(function () {
-  // Table created
-  return Password.create({
-    text: "123456",
-    strength: "Weak",
-    score: 1
-  });
-});
+db.sync({force: true});

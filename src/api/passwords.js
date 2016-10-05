@@ -1,5 +1,4 @@
 import resource from 'resource-router-middleware';
-import Password from '../models/password';
 
 export default ({ config, db }) => resource({
 
@@ -10,22 +9,23 @@ export default ({ config, db }) => resource({
    *  Errors terminate the request, success sets `req[id] = data`.
    */
    load(req, id, callback) {
-    let password = Password.find( password => password.id===id ),
+    let password = db.models.password.find( password => password.id===id ),
     err = password ? null : 'Not found';
     callback(err, password);
   },
 
   /** GET / - List all entities */
   index({ params }, res) {
-    Password.findAll().then(function(passwords) {
+    db.models.password.findAll().then(function(passwords) {
+      console.log(passwords);
       res.json(passwords);
     })
   },
 
   /** POST / - Create a new entity */
   // create({ body }, res) {
-  //   body.id = Password.length.toString(36);
-  //   Password.push(body);
+  //   body.id = db.models.password.length.toString(36);
+  //   db.models.password.push(body);
   //   res.json(body);
   // },
 
@@ -46,7 +46,7 @@ export default ({ config, db }) => resource({
 
   /** DELETE /:id - Delete a given entity */
   // delete({ password }, res) {
-  //   Password.splice(Password.indexOf(password), 1);
+  //   db.models.password.splice(db.models.password.indexOf(password), 1);
   //   res.sendStatus(204);
   // }
 });
