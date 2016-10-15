@@ -1,9 +1,9 @@
 export default callback => {
   var Sequelize = require('sequelize');
 
-  var db = new Sequelize('database', 'username', 'password', {
+  var db = new Sequelize('password-rating', 'corbinpage', 'password', {
     host: 'localhost',
-    dialect: 'sqlite', // 'postgres'
+    dialect: 'postgres', // 'sqlite'
 
     pool: {
       max: 5,
@@ -12,7 +12,7 @@ export default callback => {
     },
 
     // SQLite only
-    storage: 'src/db/dev.sqlite'
+    // storage: 'src/db/dev.sqlite'
   });
 
   var Password = db.define('password', {

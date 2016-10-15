@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('database', 'username', 'password', {
+var db = new Sequelize('password-rating', 'corbinpage', 'password', {
   host: 'localhost',
-    dialect: 'sqlite', // 'postgres'
+    dialect: 'postgres', // 'sqlite'
 
     pool: {
       max: 5,
@@ -11,7 +11,7 @@ var db = new Sequelize('database', 'username', 'password', {
     },
 
     // SQLite only
-    storage: 'dev.sqlite'
+    // storage: 'src/db/dev.sqlite'
   });
 
 export default db;
