@@ -1,8 +1,19 @@
 export default callback => {
   var Sequelize = require('sequelize');
 
-  var db = new Sequelize('password-rating', 'corbinpage', 'password', {
-    host: 'localhost',
+  if(process.env.NODE_ENV === 'production') {
+    var db = new Sequelize(process.env.POSTGRES_DATABASE_URL_COPPER, {
+      dialect: 'postgres',
+
+      pool: {
+        max: 5,
+        min: 0,
+        idle: 10000
+      },
+    });  
+  } else {
+    var db = new Sequelize('password-rating', 'corbinpage', 'password', {
+      host: 'localhost',
     dialect: 'postgres', // 'sqlite'
 
     pool: {
@@ -10,10 +21,8 @@ export default callback => {
       min: 0,
       idle: 10000
     },
-
-    // SQLite only
-    // storage: 'src/db/dev.sqlite'
   });
+  }
 
   var Password = db.define('password', {
     id: {
