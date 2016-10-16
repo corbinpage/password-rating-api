@@ -1,8 +1,19 @@
 var Sequelize = require('sequelize');
 var fs = require('fs');
 
-var db = new Sequelize('password-rating-dev', 'corbinpage', 'password', {
-  host: 'localhost',
+if(process.env.NODE_ENV === 'production') {
+  var db = new Sequelize(process.env.POSTGRES_DATABASE_URL_COPPER, {
+    dialect: 'postgres',
+
+    pool: {
+      max: 5,
+      min: 0,
+      idle: 10000
+    },
+  });  
+} else {
+  var db = new Sequelize('password-rating', 'corbinpage', 'password', {
+    host: 'localhost',
     dialect: 'postgres', // 'sqlite'
 
     pool: {
@@ -10,10 +21,8 @@ var db = new Sequelize('password-rating-dev', 'corbinpage', 'password', {
       min: 0,
       idle: 10000
     },
-
-    // SQLite only
-    // storage: 'src/db/dev.sqlite'
   });
+}
 
 var Password = db.define('password', {
   id: {
@@ -39,7 +48,7 @@ var Password = db.define('password', {
 
 Password.sync({force: true}).then( o => {
 
-  var seedPasswords = fs.readFileSync('src/lib/SecLists/Passwords/10_million_password_list_top_10000.txt').toString().split("\n");
+  var seedPasswords = fs.readFileSync('src/lib/10_million_password_list_top_10000.txt').toString().split("\n");
   var rank = 1;
   seedPasswords.forEach(p => {
     Password.create({
