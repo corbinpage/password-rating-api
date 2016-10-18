@@ -9,8 +9,9 @@
     "start": "node dist",
     "prestart": "npm run -s build",
     "test": "eslint src",
-    "migrate": "npm run -s build && node src/db/migrate.js",
-    "seed-dev": "npm run -s build && node src/db/seed.js",
+    "migrate": "node src/db/migrate.js",
+    "migrate-dev": "node dist/db/migrate.js",
+    "seed-dev": "node dist/db/seed.js",
     "seed": "node dist/db/seed.js"
   },
   "eslintConfig": {
@@ -44,7 +45,8 @@
     "express": "^4.13.3",
     "pg": "^6.1.0",
     "resource-router-middleware": "^0.5.1",
-    "sequelize": "^3.24.3"
+    "sequelize": "^3.24.3",
+    "tai-password-strength": "^1.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.9.0",
