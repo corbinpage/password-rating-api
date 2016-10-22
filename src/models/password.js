@@ -1,10 +1,6 @@
-import db from '../db/db';
 import Sequelize from 'sequelize';
+import db from '../db/db';
 import taiPasswordStrength from 'tai-password-strength';
-
-if (betterResults.strengthCode.indexOf('WEAK') >= 0) {
-  throw new Error("Your password is too weak");
-}
 
 var Password = db.define('password', {
   id: {
@@ -38,38 +34,48 @@ var Password = db.define('password', {
   },
   containsSymbols: {
     type: Sequelize.BOOLEAN
-  },
-  containsOther: {
-    type: Sequelize.BOOLEAN
   }
 }, {
-  freezeTableName: true // Model tableName will be the same as the model name
-});
+  freezeTableName: true, // Model tableName will be the same as the model name
+  instanceMethods: {
+    prettyStrength: function () {
+      var pretty = '';
+      if(this.strength === 'VERY_WEAK') {
+        pretty = 'Very Weak';
+      } else if (this.strength === 'WEAK') {
+        pretty = 'Weak';
+      } else if (this.strength === 'REASONABLE') {
+        pretty = 'Ok';
+      } else if (this.strength === 'STRONG') {
+        pretty = 'Strong';
+      } else if (this.strength === 'VERY_STRONG') {
+        pretty = 'Very Strong';
+      }
+      return pretty;
+    },
+    rankDescription: function() {
+      if(this.get('rank')) {
+        return  'Your password is in the top '&this.get('rank')&' most common passwords';
+      } else {
+        return 'Your password is not in the top 10,000 most common passwords.';
+      }
+    },
+    testStrength: function() {
+      if(this.text) {
+        var strengthTester = new taiPasswordStrength.PasswordStrength();
+        var results = strengthTester.check(this.text);
 
-Password.sync();
-
-Password.prototype.rankDescription = function() {
-  if(this.get('rank')) {
-    return  'Your password is in the top '&this.get('rank')&' most common passwords';
-  } else {
-    return 'Your password is not in the top 10,000 most common passwords.';
+        this.rank = this.rank || 0;
+        this.score = results.charsetSize;
+        this.textLength = results.passwordLength;
+        this.strength = results.strengthCode;
+        this.containsLowercase = results.charsets.lower;
+        this.containsUppercase = results.charsets.upper;
+        this.containsNumbers = results.charsets.number;
+        this.containsSymbols = results.charsets.symbol;
+      }
+    }
   }
-};
-
-Password.prototype.testStrength = function() {
-  var strengthTester = new taiPasswordStrength.PasswordStrength();
-  var results = strengthTester.check(this.text);
-
-  this.rank = this.rank || 0;
-  this.score = charsetSize;
-  this.textLength = results.passwordLength;
-  this.strength = results.strengthCode;
-  this.containsLowercase = results.charets.lower;
-  this.containsUppercase = results.charets.upper;
-  this.containsNumbers = results.charets.number;
-  this.containsSymbols = results.charets.symbol;
-  this.containsOther = results.charets.other;
-
-};
+});
 
 export default Password;

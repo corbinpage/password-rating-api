@@ -1,7 +1,9 @@
 var Sequelize = require('sequelize');
+var db;
+
 
 if(process.env.NODE_ENV === 'production') {
-  var db = new Sequelize(process.env.POSTGRES_DATABASE_URL_COPPER, {
+  db = new Sequelize(process.env.POSTGRES_DATABASE_URL_COPPER, {
     dialect: 'postgres',
 
     pool: {
@@ -11,7 +13,7 @@ if(process.env.NODE_ENV === 'production') {
     },
   });  
 } else {
-  var db = new Sequelize('password-rating', 'corbinpage', 'password', {
+  db = new Sequelize('password-rating-dev', 'corbinpage', 'password', {
     host: 'localhost',
     dialect: 'postgres', // 'sqlite'
 

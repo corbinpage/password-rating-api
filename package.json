@@ -9,9 +9,7 @@
     "start": "node dist",
     "prestart": "npm run -s build",
     "test": "eslint src",
-    "migrate": "node src/db/migrate.js",
-    "migrate-dev": "node dist/db/migrate.js",
-    "seed-dev": "node dist/db/seed.js",
+    "migrate": "node dist/db/migrate.js",
     "seed": "node dist/db/seed.js"
   },
   "eslintConfig": {
