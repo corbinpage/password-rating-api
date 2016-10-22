@@ -1,7 +1,7 @@
-Express & ES6 REST API Boilerplate
+Password Ratings API
 ==================================
 
-[![bitHound Score](https://www.bithound.io/github/developit/express-es6-rest-api/badges/score.svg)](https://www.bithound.io/github/developit/express-es6-rest-api)
+<!-- [![bitHound Score](https://www.bithound.io/github/developit/express-es6-rest-api/badges/score.svg)](https://www.bithound.io/github/developit/express-es6-rest-api)
 
 This is a straightforward boilerplate for building REST APIs with ES6 and Express.
 
@@ -31,7 +31,7 @@ PORT=8080 npm run dev
 
 # Start production server:
 PORT=8080 npm start
-```
+``` -->
 
 
 License
