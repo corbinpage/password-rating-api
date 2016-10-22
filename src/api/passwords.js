@@ -10,18 +10,24 @@ export default ({ config, db }) => resource({
    */
    load(req, id, callback) {
     db.models.password.find( { where: {text: id} } ).then(password => {
-      let err = password ? null : 'Not found';
-      callback(err, password);      
+      if(!password) {
+        db.models.password.create(id).then(password => {
+          callback(null, password);        
+        });
+      } else {
+        // let err = password ? null : 'Not found';
+        callback(null, password);          
+      }
     })
   },
 
   /** GET / - List all entities */
-  index({ params }, res) {
-    db.models.password.findAll().then(function(passwords) {
-      console.log(passwords);
-      res.json(passwords);
-    })
-  },
+  // index({ params }, res) {
+  //   db.models.password.findAll().then(function(passwords) {
+  //     console.log(passwords);
+  //     res.json(passwords);
+  //   })
+  // },
 
   /** POST / - Create a new entity */
   // create({ body }, res) {
@@ -32,19 +38,18 @@ export default ({ config, db }) => resource({
 
   /** GET /:id - Return a given entity */
   read({ password }, res) {
-    console.log(password);
-    res.json(password)
+    res.json( password.apiResult() )  
   },
 
   /** PUT /:id - Update a given entity */
-  update({ password, body }, res) {
-    for (let key in body) {
-      if (key!=='id') {
-        password[key] = body[key];
-      }
-    }
-    res.sendStatus(204);
-  },
+  // update({ password, body }, res) {
+  //   for (let key in body) {
+  //     if (key!=='id') {
+  //       password[key] = body[key];
+  //     }
+  //   }
+  //   res.sendStatus(204);
+  // },
 
   /** DELETE /:id - Delete a given entity */
   // delete({ password }, res) {
