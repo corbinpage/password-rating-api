@@ -1,7 +1,6 @@
 var Sequelize = require('sequelize');
 var db;
 
-
 if(process.env.NODE_ENV === 'production') {
   db = new Sequelize(process.env.POSTGRES_DATABASE_URL_COPPER, {
     dialect: 'postgres',

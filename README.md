@@ -1,5 +1,6 @@
-Password Ratings API
+Password Rating API
 ==================================
+Simple and secure API to check the quality of a proposed password.
 
 <!-- [![bitHound Score](https://www.bithound.io/github/developit/express-es6-rest-api/badges/score.svg)](https://www.bithound.io/github/developit/express-es6-rest-api)
 

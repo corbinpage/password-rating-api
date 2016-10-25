@@ -1,69 +1,57 @@
 <!doctype html>
 <html data-framework="vue">
-  <head>
-    <meta charset="utf-8">
-    <title>Vue.js • TodoMVC</title>
-    <link rel="stylesheet" href="https://unpkg.com/todomvc-app-css/index.css">
-    <script src="https:unpkg.com/director/build/director.js"></script>
-    <style>[v-cloak] { display: none; }</style>
-  </head>
-  <body>
-    <section class="todoapp">
-      <header class="header">
-        <h1>todos</h1>
-        <input class="new-todo"
-          autofocus autocomplete="off"
-          placeholder="What needs to be done?"
-          v-model="newTodo"
-          @keyup.enter="addTodo">
-      </header>
-      <section class="main" v-show="todos.length" v-cloak>
-        <input class="toggle-all" type="checkbox" v-model="allDone">
-        <ul class="todo-list">
-          <li v-for="todo in filteredTodos"
-            class="todo"
-            :key="todo.id"
-            :class="{ completed: todo.completed, editing: todo == editedTodo }">
-            <div class="view">
-              <input class="toggle" type="checkbox" v-model="todo.completed">
-              <label @dblclick="editTodo(todo)">{{ todo.title }}</label>
-              <button class="destroy" @click="removeTodo(todo)"></button>
-            </div>
-            <input class="edit" type="text"
-              v-model="todo.title"
-              v-todo-focus="todo == editedTodo"
-              @blur="doneEdit(todo)"
-              @keyup.enter="doneEdit(todo)"
-              @keyup.esc="cancelEdit(todo)">
-          </li>
-        </ul>
-      </section>
-      <footer class="footer" v-show="todos.length" v-cloak>
-        <span class="todo-count">
-          <strong>{{ remaining }}</strong> {{ remaining | pluralize }} left
-        </span>
-        <ul class="filters">
-          <li><a href="#/all" :class="{ selected: visibility == 'all' }">All</a></li>
-          <li><a href="#/active" :class="{ selected: visibility == 'active' }">Active</a></li>
-          <li><a href="#/completed" :class="{ selected: visibility == 'completed' }">Completed</a></li>
-        </ul>
-        <button class="clear-completed" @click="removeCompleted" v-show="todos.length > remaining">
-          Clear completed
-        </button>
-      </footer>
-    </section>
-    <footer class="info">
-      <p>Double-click to edit a todo</p>
-      <p>Written by <a href="http://evanyou.me">Evan You</a></p>
-      <p>Part of <a href="http://todomvc.com">TodoMVC</a></p>
-    </footer>
+<head>
+  <meta charset="utf-8">
+  <title>Password Rating API - Documentation</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-    <script>
-    // for testing
-    if (navigator.userAgent.indexOf('PhantomJS') > -1) localStorage.clear()
-    </script>
-    <!-- Delete ".min" for console warnings in development -->
-    <script src="../../dist/vue.min.js"></script>
-    <script src="app.js"></script>
-  </body>
+  <section>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-3">Password Rating API</h1>
+        <p>Simple and secure API to check the quality of a proposed password.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="card card-outline-primary text-xs-center">
+            <div class="card-block">
+              <div id="app">
+                <input v-model="message">
+                <button v-on:click="checkRating">Check Password</button>
+                <p>{{ rating }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer pt-3">
+    <div class="container">
+      <div class="row text-md-center">
+        <div>
+          <span>View the <a href="https://github.com/corbinpage/password-stats-api" target="_blank">code on Github</a></span>
+        </div>
+        <div>
+          <span>Built by <a href="https://twitter.com/corbpage" target="_blank">Corbin Page</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/marked@0.3.6"></script>
+  <script src="https://unpkg.com/lodash@4.16.0"></script>
+  <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+  <script src="app.js"></script>
+</body>
 </html>
