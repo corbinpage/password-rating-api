@@ -1,14 +1,15 @@
 var app = new Vue({
   el: '#app',
   data: {
-    message: 'qwerty',
-    rating: 'No rating yet.'
+    message: '',
+    rating: '<response>'
   },
   methods: {
     reverseMessage: function () {
       this.message = this.message.split('').reverse().join('')
     },
     checkRating: function () {
+      console.log("asdf");
       let thisVue = this;
       $.get({
         url: 'https://password-rating.herokuapp.com/api/v1/passwords/' + encodeURIComponent(this.message),

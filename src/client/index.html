@@ -9,49 +9,105 @@
 <body>
 
   <section>
-    <div class="jumbotron">
+    <div id="opener" class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-3">Password Rating API</h1>
-        <p>Simple and secure API to check the quality of a proposed password.</p>
+        <p class="lead">Simple and secure Web API to check the quality of a proposed password.</p>
+        <p class="lead">Try it out below or call the service from your own app.</p>
       </div>
     </div>
   </section>
 
-  <section>
+  <section id="how-to">
     <div class="container">
       <div class="row">
         <div class="col-xs-12">
-          <div class="card card-outline-primary text-xs-center">
-            <div class="card-block">
+          <div class="card card-outline-success">
+            <div class="card-block text-xs-center">
+              <h1 class="display-5">How it Works</h1>
+              <p>Make a GET request to <code>/api/v1/passwords/{password}</code> to recieve a rating and details about your password's strength.</p>
+              
               <div id="app">
-                <input v-model="message">
-                <button v-on:click="checkRating">Check Password</button>
-                <p>{{ rating }}</p>
+                <div class="card card-outline-warning">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item">             
+                      <code>curl https://password-rating.herokuapp.com/api/v1/passwords/{{ message }}</code>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="form-group row">
+                      <input v-model="message" v-on:keypress="checkRating" placeholder="Enter Password" class="form-control text-xs-center" type="search">
+                      </div>
+                      <li class="list-group-item"><samp>{{ rating }}</samp></li>
+                    </ul>
+                  </div>
+                </div>
+
+
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
-  <footer class="footer pt-3">
-    <div class="container">
-      <div class="row text-md-center">
-        <div>
-          <span>View the <a href="https://github.com/corbinpage/password-stats-api" target="_blank">code on Github</a></span>
-        </div>
-        <div>
-          <span>Built by <a href="https://twitter.com/corbpage" target="_blank">Corbin Page</a></span>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="card card-outline-warning">
+              <div class="card-block">
+                <h1 class="display-5">Caveates</h1>
+                <p class="lead">Rate Limits</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
-  <script src="https://unpkg.com/marked@0.3.6"></script>
-  <script src="https://unpkg.com/lodash@4.16.0"></script>
-  <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
-  <script src="app.js"></script>
-</body>
-</html>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="card card-outline-warning">
+              <div class="card-block">
+                <h1 class="display-5">Inspiration</h1>
+                <p>While building this API, the following were used as inspiration:</p>
+                <ul>
+                  <li><a target="_blank" href="http://www.passwordrandom.com/">Site</a></li>
+                  <li><a target="_blank" href="https://github.com/danielmiessler/SecLists/tree/master/Passwords">Site</a></li>
+                  <li><a target="_blank" href="https://howsecureismypassword.net/">Site</a></li>
+                  <li><a target="_blank" href="http://www.passwordrandom.com/password-strength-checker">Site</a></li>
+                  <li><a target="_blank" href="http://wpengine.com/unmasked/">Site</a></li>
+                  <li><a target="_blank" href="http://minimaxir.com/2015/02/password-numbers">Site</a></li>
+                  <li><a target="_blank" href="https://holidayapi.com">Site</a></li>
+
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer pt-3">
+      <div class="container">
+        <div class="row text-xs-center">
+          <div>
+            <span>View the <a href="https://github.com/corbinpage/password-stats-api" target="_blank">code on Github</a></span>
+          </div>
+          <div>
+            <span>Built by <a href="https://twitter.com/corbpage" target="_blank">Corbin Page</a></span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" integrity="sha384-3ceskX3iaEnIogmQchP8opvBy3Mi7Ce34nWjpBIwVTHfGYWQS9jwHDVRnpKKHJg7" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/marked@0.3.6"></script>
+    <script src="https://unpkg.com/lodash@4.16.0"></script>
+    <script src="https://unpkg.com/vue@2.0.3/dist/vue.js"></script>
+    <script src="app.js"></script>
+  </body>
+  </html>

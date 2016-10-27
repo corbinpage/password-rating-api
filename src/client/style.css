@@ -1,4 +1,13 @@
-#editor {
+#opener {
+  background-color: #fcf8e3;
+}
+
+/*#how-to {
+  margin-bottom: 0rem;
+  background-color: #fcf8e3;
+}*/
+
+/*#editor {
   margin: 0;
   height: 100%;
   font-family: 'Helvetica Neue', Arial, sans-serif;
@@ -27,4 +36,4 @@ textarea {
 
 code {
   color: #f66;
-}
+}*/
