@@ -2,10 +2,27 @@
   background-color: #fcf8e3;
 }
 
+#rate-limit {
+  background-color: #f7f7f9;
+}
+
+#inspiration {
+  /*background-color: #fcf8e3;*/
+}
+
+
+#password-text {
+  border: none;
+}
+
+footer {
+  background-color: #fcf8e3;
+}
+
 /*#how-to {
   margin-bottom: 0rem;
   background-color: #fcf8e3;
-}*/
+  }*/
 
 /*#editor {
   margin: 0;
