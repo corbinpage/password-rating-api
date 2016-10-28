@@ -87,8 +87,9 @@ var Password = db.define('password', {
       return pretty;
     },
     rankDescription: function() {
+      console.log(this.rank);
       if(this.rank) {
-        return  'Your password is in the top '&this.rank&' most common passwords';
+        return  'Your password is in the top ' + this.rank + ' most common passwords';
       } else {
         return 'Your password is not in the top 10,000 most common passwords.';
       }
