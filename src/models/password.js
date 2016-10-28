@@ -38,13 +38,21 @@ var Password = db.define('password', {
 }, {
   freezeTableName: true, // Model tableName will be the same as the model name
   classMethods: {
-    create: function(text) {
+    _create: function(text) {
       var newPassword = Password.build({
         text: text
       });
 
       newPassword.testStrength();
       return newPassword.save({returning: true});
+    },
+    _build: function(text) {
+      var newPassword = Password.build({
+        text: text
+      });
+
+      newPassword.testStrength();
+      return newPassword;
     }
   },
   instanceMethods: {

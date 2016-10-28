@@ -11,9 +11,7 @@ export default ({ config, db }) => resource({
    load(req, id, callback) {
     db.models.password.find( { where: {text: id} } ).then(password => {
       if(!password) {
-        db.models.password.create(id).then(password => {
-          callback(null, password);        
-        });
+        callback(null, db.models.password._build(id) );
       } else {
         // let err = password ? null : 'Not found';
         callback(null, password);          
