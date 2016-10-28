@@ -16,7 +16,17 @@
 }
 
 #password-text {
+  font-family: Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
   border: none;
+  font-size: 3em;
+  height: 1.5em;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+}
+
+.form-group {
+   margin-bottom: 0; 
 }
 
 footer {
