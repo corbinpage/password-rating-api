@@ -29,18 +29,18 @@
             <div class="card card-outline-warning">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">             
-                  <code>curl https://password-rating.herokuapp.com/api/v1/passwords/{{ passwordText }}</code>
+                  <code v-cloak>curl https://password-rating.herokuapp.com/api/v1/passwords/{{ passwordText }}</code>
                 </li>
-                <li class="list-group-item">
+                <li class="list-group-item outline-warning">
                   <div class="form-group row">
-                    <input id="password-text" v-model="passwordText" v-on:keypress="checkRating" placeholder="Enter Password" class="form-control text-xs-center" type="search">
+                    <input id="password-text" v-model="passwordText" v-on:keyup="checkRating" placeholder="Enter Password" class="form-control text-xs-center" type="search">
                   </div>
                 </li>
                 <li class="list-group-item">
-                  <div v-if="alert" class="alert alert-danger" role="alert">
+                  <div v-if="alert" class="alert alert-danger" role="alert" v-cloak>
                     {{ alert }}
                   </div>
-                  <samp>{{ rating }}</samp>
+                  <samp v-cloak>{{ rating }}</samp>
                 </li>
               </ul>
             </div>
@@ -68,11 +68,10 @@
       <div class="row">
         <div class="col-xs-12">
           <h1 class="display-5">Inspiration</h1>
-          <p>The following resources were used as inspiration while building this little app:</p>
           <ul>
-            <li><a target="_blank" href="hhttps://xato.net/10-000-top-passwords-6d6380716fe0#.rahdofvh2">Mark Burnett's 10,0000 Top Password List</a> - Illustrates just how unsecure our passwords are</li>
-            <li><a target="_blank" href="https://github.com/danielmiessler/SecLists/tree/master/Passwords">SecLists' security tester's companion</a> - Comprehensive list of common passwords</li>
-            <li><a target="_blank" href="https://howsecureismypassword.net/">Dashlane's Password Rating App</a> - Based on the same dataset but with much better design</li>
+            <li><a target="_blank" href="hhttps://xato.net/10-000-top-passwords-6d6380716fe0#.rahdofvh2">Mark Burnett's 10,0000 Top Password List</a> - Illustrates just how unsecure our passwords really are.</li>
+            <li><a target="_blank" href="https://github.com/danielmiessler/SecLists/tree/master/Passwords">SecLists' Security tester's companion</a> - Comprehensive list of common passwords and other vulnerabilities.</li>
+            <li><a target="_blank" href="https://howsecureismypassword.net/">Dashlane's Password Rating App</a> - Based on the same dataset but with much better design. :-)</li>
           </ul>
         </div>
       </div>

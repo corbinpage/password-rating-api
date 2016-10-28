@@ -96,10 +96,10 @@ var Password = db.define('password', {
     apiResult: function() {
       return {
         text: this.text,
-        rank: this.rank,
-        rankDescription: this.rankDescription(),
         strength: this.prettyStrength(),
         score: this.score,
+        rank: this.rank,
+        rankDescription: this.rankDescription(),
         textLength: this.textLength,
         containsLowercase: this.containsLowercase,
         containsUppercase: this.containsUppercase,

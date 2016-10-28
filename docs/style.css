@@ -1,0 +1,29 @@
+#opener {
+  background-color: #A2E3C4;
+}
+
+#rate-limit {
+  background-color: #B3BFB8;
+}
+
+#inspiration {
+  /*background-color: #fcf8e3;*/
+}
+
+.card-outline-warning li{
+  background-color: transparent;
+  border-color: #f0ad4e;
+}
+
+#password-text {
+  border: none;
+}
+
+footer {
+  background-color: #A2E3C4;
+}
+
+[v-cloak]
+{
+  display:none;
+}
